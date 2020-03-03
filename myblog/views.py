@@ -1,9 +1,10 @@
 from django.http import HttpResponse
 from .models import Question
 from django.template import loader
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Post
 from django.utils import timezone
+
 
 
 def post_list(request):
@@ -19,3 +20,7 @@ def results(request, question_id):
 
 def vote(request, question_id):
     return HttpResponse("You're voting on question %s." % question_id)
+
+def post_detail(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    return render(request, 'MYblog/post_detail.html', {'post': post})
