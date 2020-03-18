@@ -1,0 +1,27 @@
+<!--여기서 url post_detail은 view에서 path의 이름-->
+{% extends 'myblog/base.html' %}
+
+{% block content %}
+    <div class="content container">
+        <form method="POST" class="post-form">{% csrf_token %}
+            {{ form.as_table }}
+            <button type="submit" class="save btn btn-default">Save</button>
+        </form>
+    </div>
+{% endblock %}
+
+{% block list %}
+<div class="content container">    
+    {% for post in posts %}
+    <div class="post">
+        <h1><a href="{% url 'post_detail'}">{{ post.title }}</a></h1>
+        <div class="date">
+            published: {{ post.published_date }}<br>
+            author : {{ post.author }}
+        </div>
+        <p><br>{{ post.text|linebreaksbr }}</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
