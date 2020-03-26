@@ -10,3 +10,11 @@ class PostForm(forms.ModelForm):
         author = forms.CharField()
         #fileds는 model의 일부만 사용하고자 할 때
         fields = ('title', 'author', 'text', 'password')
+
+class UntranslatedForm(forms.ModelForm):
+    class Meta:
+        input = forms.CharField(help_text="Type what you want to translate!", required=True)
+
+class TranslatedForm(forms.ModelForm):
+    class Meta:
+        output=forms.CharField(disabled=True)

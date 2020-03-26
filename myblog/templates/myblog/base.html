@@ -66,11 +66,25 @@
 	    			<div class="col-xl-8 py-5 px-md-5">
 	    				<div class="row pt-md-4">
 
-                            {% block content %}
-                            {% endblock %}
+                            <div class="content container">
+        <form method="POST" class="post-form">{% csrf_token %}
+            {{ form.as_table }}
+            <button type="submit" class="save btn btn-default">Save</button>
+        </form>
+    </div>
 							<br><br>
-                            {% block list %}
-                            {% endblock %}
+                            <div class="content container">    
+    {% for post in posts %}
+    <div class="post">
+        <h1><a href="{% url 'post_detail'}">{{ post.title }}</a></h1>
+        <div class="date">
+            published: {{ post.published_date }}<br>
+            author : {{ post.author }}
+        </div>
+        <p><br>{{ post.text|linebreaksbr }}</p>
+    </div>
+    {% endfor %}
+</div>
 
 
 								
