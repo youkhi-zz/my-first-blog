@@ -84,4 +84,6 @@ stages:
             inputs:
               azureSubscription: $(azureServiceConnectionId)
               appName: $(webAppName)
+              deployToSlotOrASE: true
+              slotName: Staging
               package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
