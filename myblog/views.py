@@ -34,23 +34,7 @@ def about(request):
     return render(request, 'myblog/about.html')
 
 def translator(request):
-    return render(Request, 'myblog/translator.html')
-
-'''
-def untranslated(request):
-    if request.method == "GET": # 폼에 있는 정보를 view로 가져옴
-        untranslatedform=UntranslatedForm(request.GET)
-        if untranslatedform.is_valid():
-            #사용자가 입력한 text를 api호출해서 번역할 것
-            return render(request, 'myblog/translator.html')
-    context={'form':untranslatedform, 'result':translatedform}
-    return render(request, 'myblog/translator.html', context)
-
-def translated(request):
-    if request.method =="GET":
-        form=TranslatedForm(request.GET)
     return render(request, 'myblog/translator.html')
-'''
 
 def travel(request):
     return render(request, 'myblog/travel.html')

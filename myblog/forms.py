@@ -18,3 +18,5 @@ class UntranslatedForm(forms.ModelForm):
 class TranslatedForm(forms.ModelForm):
     class Meta:
         output=forms.CharField(disabled=True)
+
+# 폼은 브라우저랑 장고 api가 소통하도록 해주는 애, 그냥 텍스트 받아주는 애
