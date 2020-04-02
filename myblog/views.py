@@ -9,6 +9,7 @@ from django.http import Http404
 from django.urls import reverse
 from django.views import generic
 from .sampletranslator import sampletranslator
+import json
 
 
 #from langdetect import detect_langs
@@ -41,15 +42,15 @@ def translator(request):
         form=TranslatorForm(request.POST)
         if form.is_valid():
             textvar=request.POST
-            textvar=textvar['input']
-            sampletranslator(textvar)
-            # ? sampletranslator.py의 원래 파일 이름은 translator-text.py였음
-            # ? 그런데 - 를 인식하지 못하는 듯 함
-            # ? 이런 경우는 어떻게?
+            textvar=textvar['input'] # request.POST에서 사용자가 입력한 text만 가져오는 부분
+            output_json=sampletranslator(textvar) # 사용자가 입력한 text를 api호출해서 결과값 받아옴
+            output_list=json.loads(output_json)
+            # print(output_list) # {'detectedLanguage': {'language': 'ko', 'score': 1.0}, 'translations': [{'text': 'Translate me', 'to': 'en'}]}
+            output_text=output_list[0]['translations'][0]['text']
+            print(output_text)
             # return redirect('translator')
     else:
         form=TranslatorForm() # 그냥 비어있는 화면
-
     context={'form':form}
     return render(request, 'myblog/translator.html', context)
 

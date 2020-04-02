@@ -12,7 +12,7 @@ if not endpoint_var_name in os.environ:
 endpoint = os.environ[endpoint_var_name]
 
 path = '/translate?api-version=3.0'
-params = '&to=en&to=it'
+params = '&to=en'
 constructed_url = endpoint + path + params
 
 headers = {
@@ -28,4 +28,5 @@ def sampletranslator(textvar):
     request = requests.post(constructed_url, headers=headers, json=body)
     response = request.json()
     print(json.dumps(response, sort_keys=True, indent=4, ensure_ascii=False, separators=(',', ': ')))
+    return json.dumps(response, sort_keys=True, indent=4, ensure_ascii=False, separators=(',', ': '))
 
