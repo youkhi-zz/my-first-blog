@@ -12,8 +12,10 @@ class PostForm(forms.ModelForm):
         fields = ('title', 'author', 'text', 'password')
 
 # https://stackoverflow.com/questions/17754295/can-i-have-a-django-form-without-model
+# 폼은 브라우저랑 장고 api가 소통하도록 해주는 애, 그냥 텍스트 받아주는 애
+
 class TranslatorForm(forms.Form):
      input = forms.CharField(help_text="<br/><br/>", required=True)
      output = forms.CharField(disabled=True, required=False)
 
-# 폼은 브라우저랑 장고 api가 소통하도록 해주는 애, 그냥 텍스트 받아주는 애
+

@@ -21,10 +21,11 @@ headers = {
     'X-ClientTraceId': str(uuid.uuid4())
 }
 
-def translator(textvar):
+def sampletranslator(textvar):
     body = [{
         'text': textvar
     }]
     request = requests.post(constructed_url, headers=headers, json=body)
     response = request.json()
     print(json.dumps(response, sort_keys=True, indent=4, ensure_ascii=False, separators=(',', ': ')))
+

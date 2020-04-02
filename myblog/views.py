@@ -8,6 +8,9 @@ from django.shortcuts import redirect
 from django.http import Http404
 from django.urls import reverse
 from django.views import generic
+from .sampletranslator import sampletranslator
+
+
 #from langdetect import detect_langs
 
 # 함수의 인자로 request를 받음
@@ -38,8 +41,12 @@ def translator(request):
         form=TranslatorForm(request.POST)
         if form.is_valid():
             textvar=request.POST
-            translator(textvar)
-            return redirect('translator')
+            textvar=textvar['input']
+            sampletranslator(textvar)
+            # ? sampletranslator.py의 원래 파일 이름은 translator-text.py였음
+            # ? 그런데 - 를 인식하지 못하는 듯 함
+            # ? 이런 경우는 어떻게?
+            # return redirect('translator')
     else:
         form=TranslatorForm() # 그냥 비어있는 화면
 
