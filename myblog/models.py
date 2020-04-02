@@ -24,3 +24,8 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+'''
+class Translator(models.Model):
+    input=models.CharField(max_length=50)
+    output=models.CharField(max_length=50)
+'''

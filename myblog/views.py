@@ -3,7 +3,7 @@ from django.template import loader
 from django.shortcuts import render, get_object_or_404
 from .models import Post
 from django.utils import timezone
-from .forms import PostForm
+from .forms import PostForm, TranslatorForm
 from django.shortcuts import redirect
 from django.http import Http404
 from django.urls import reverse
@@ -30,11 +30,26 @@ def post_main(request): #guestbook
     context = {'form':form, "posts":posts}
     return render(request, 'myblog/post_main.html', context)
 
+# POST method needs to be used
+# text to variable, variable to API, json to dynamic contents -> javascript
+def translator(request):
+    form=TranslatorForm()
+    if request.method=="POST":
+        form=TranslatorForm(request.POST)
+        if form.is_valid():
+            #변수를 받아서 던져주고
+            #받아와서
+            #화면에 나타냄
+            return redirect('translator')
+    else:
+        form=TranslatorForm()
+
+    context={'form':form}
+    return render(request, 'myblog/translator.html', context)
+
+
 def about(request):
     return render(request, 'myblog/about.html')
-
-def translator(request):
-    return render(request, 'myblog/translator.html')
 
 def travel(request):
     return render(request, 'myblog/travel.html')

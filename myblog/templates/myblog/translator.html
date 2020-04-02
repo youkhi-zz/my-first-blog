@@ -66,25 +66,15 @@
 	    	<div class="container">            
 	    		<div class="row d-flex">                
 	    			<div class="col-xl-8 py-5 px-md-5">
-                        <h3 class="mb-4">What's the purpose of this page?</h3>
-                        <h8 class="mb-4">The translator in this page is using Azure Cognitive Service<h8>
+                        <h3 class="mb-4">This translator is powered by Microsoft Azure</h3>
 	    				<div class="row pt-md-4">
                             <div class="content container">
-                                <form method="GET" class="post-form">
-                                    <label for="untranslated">Input</label>
-                                    <input id="untranslated" type="text_field" name="input_field" value="Tell me what you want to translate!">
+                                <form method="POST" class="post-form">                             
                                     {% csrf_token %}
                                     {{ form.as_table }}
-                                    <button type="submit" class="save btn btn-default">Save</button>
+                                    <button type="submit" class="save btn btn-default">Translate</button>
                                 </form>
                                 <br><br>
-                                <form method="POST" class="post-form">
-                                <label for="translated">Output</label>
-                                <input id="translated" type="text_field" name="output_field" value="Translated!">
-                                    {% csrf_token %}
-                                    {{ form.as_table }}
-                                    
-                                </form>
                             </div>
 			    		</div><!-- END-->
 			    	</div>
