@@ -20,13 +20,11 @@ headers = {
     'Content-type': 'application/json',
     'X-ClientTraceId': str(uuid.uuid4())
 }
-textvar='안녕'
-#form으로 부터 입력받아서 body에 넣어야 할 듯
-body = [{
-    'text': textvar
-}]
 
-request = requests.post(constructed_url, headers=headers, json=body)
-response = request.json()
-
-print(json.dumps(response, sort_keys=True, indent=4, ensure_ascii=False, separators=(',', ': ')))
+def translator(textvar):
+    body = [{
+        'text': textvar
+    }]
+    request = requests.post(constructed_url, headers=headers, json=body)
+    response = request.json()
+    print(json.dumps(response, sort_keys=True, indent=4, ensure_ascii=False, separators=(',', ': ')))

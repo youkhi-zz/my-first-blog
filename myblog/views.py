@@ -34,19 +34,17 @@ def post_main(request): #guestbook
 # text to variable, variable to API, json to dynamic contents -> javascript
 def translator(request):
     form=TranslatorForm()
-    if request.method=="POST":
+    if request.method=="POST": # form에 입력된 정보를 view로 가져올 때
         form=TranslatorForm(request.POST)
         if form.is_valid():
-            #변수를 받아서 던져주고
-            #받아와서
-            #화면에 나타냄
+            textvar=request.POST
+            translator(textvar)
             return redirect('translator')
     else:
-        form=TranslatorForm()
+        form=TranslatorForm() # 그냥 비어있는 화면
 
     context={'form':form}
     return render(request, 'myblog/translator.html', context)
-
 
 def about(request):
     return render(request, 'myblog/about.html')

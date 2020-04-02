@@ -66,13 +66,13 @@
 	    	<div class="container">            
 	    		<div class="row d-flex">                
 	    			<div class="col-xl-8 py-5 px-md-5">
-                        <h3 class="mb-4">This translator is powered by Microsoft Azure</h3>
+                        <h4 class="mb-4">This translator is powered by Microsoft Azure</h4>
 	    				<div class="row pt-md-4">
                             <div class="content container">
                                 <form method="POST" class="post-form">                             
                                     {% csrf_token %}
-                                    {{ form.as_table }}
                                     <button type="submit" class="save btn btn-default">Translate</button>
+                                    {{ form.as_table }}                                    
                                 </form>
                                 <br><br>
                             </div>
