@@ -67,12 +67,17 @@
 	    	<div class="container">            
 	    		<div class="row d-flex">                
 	    			<div class="col-xl-8 py-5 px-md-5">
+                        
                         <h4 class="mb-4">This chatbot is powered by Microsoft Azure</h4>
+                        
 	    				<div class="row pt-md-4">
                             <div class="content container">
+                                <div class="post-form">
                                 <textarea id="chat-log" cols="70" rows="10"></textarea><br/>
                                 <input id="chat-message-input" type="text" size="70"/><br/>
                                 <input id="chat-message-submit" type="button" value="Send"/>
+                                
+                                </div>
                                 <script>                                        
                                     var chatSocket = new WebSocket(
                                         'ws://' + window.location.host + '/ws/myblog/');
