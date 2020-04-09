@@ -7,6 +7,7 @@ urlpatterns = [
     path('', views.travel, name='travel'), # home
     path('guestbook/', views.post_main, name='post_main'),    # guestbook
     path('translator/', views.translator, name='translator'),
+    path('echochat/', views.echochatroom, name='echochatroom'),
     path('about/', views.about, name='about'),  # about  
     path('post/<int:pk>/', views.post_detail, name='post_detail'),
     path('post/<int:pk>/edit/', views.post_edit, name='post_edit')

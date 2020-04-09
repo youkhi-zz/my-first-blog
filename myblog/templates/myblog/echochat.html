@@ -38,9 +38,9 @@
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
 					<li><a href="{% url 'travel' %}">Home</a></li>
-					<li class="colorlib-active"><a href="">Guest Book</a></li>
+					<li><a href="{% url 'post_main' %}">Guest Book</a></li>
                     <li><a href="{% url 'translator' %}">Translator</a></li>
-                    <li><a href="{% url 'echochat' %}">Echo Chat</a></li>
+                    <li class="colorlib-active"><a href="">Echo Chat</a></li>
 					<li><a href="{% url 'about' %}">About</a></li>
 				</ul>
 			</nav>
@@ -62,31 +62,30 @@
 		    </div>
 		</aside> <!-- END COLORLIB-ASIDE -->
 
-		<div id="colorlib-main">
-			<section class="ftco-section ftco-no-pt ftco-no-pb">
-	    	<div class="container">
-	    		<div class="row d-flex">
+		<div id="colorlib-main">        
+			<section class="ftco-section ftco-no-pt ftco-no-pb">            
+	    	<div class="container">            
+	    		<div class="row d-flex">                
 	    			<div class="col-xl-8 py-5 px-md-5">
+                        <h4 class="mb-4">This chatbot is powered by Microsoft Azure</h4>
 	    				<div class="row pt-md-4">
                             <div class="content container">
-                                <form method="POST" class="post-form">{% csrf_token %}
-                                {{ form.as_table }}
-                                <button type="submit" class="save btn btn-default">Save</button>
-                                </form>
-                            </div>
-						    <br><br>
-
-                            <div class="content container">    
-                                {% for post in posts %}
-                                    <div class="post">
-                                        <h1><a href="{% url 'post_detail'}">{{ post.title }}</a></h1>
-                                            <div class="date">
-                                            published: {{ post.published_date }}<br>
-                                            author : {{ post.author }}
-                                            </div>
-                                        <p><br>{{ post.text|linebreaksbr }}</p>
-                                    </div>
-                                {% endfor %}
+                                What chat room would you like to enter?<br/>
+                                <input id="room-name-input" type="text" size="50"/><br><br>
+                                <input id="room-name-submit" type="button" value="Enter"/>
+                                <script>                                        
+                                    document.querySelector('#room-name-input').focus();
+                                    document.querySelector('#room-name-input').onkeyup = function(e) {
+                                        if (e.keyCode === 13) {  // enter, return
+                                            document.querySelector('#room-name-submit').click();
+                                        }
+                                    };
+                                    document.querySelector('#room-name-submit').onclick = function(e) {
+                                        var roomName = document.querySelector('#room-name-input').value;
+                                        window.location.pathname = '/echochat/' + roomName + '/';
+                                    };
+                                </script>
+                                <br><br>
                             </div>
 			    		</div><!-- END-->
 			    	</div>

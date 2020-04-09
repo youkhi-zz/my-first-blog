@@ -31,7 +31,8 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'myblog.apps.MyblogConfig',
+    #'channels',
+    'myblog.apps.MyblogConfig',    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,6 +40,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+'''
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'asgiref.inmemory.ChannelLayer',
+        'ROUTING': 'myblog.routing.channel_routing', #'ROUTING': 'myblog.routing.channel_routing',
+    },
+}
+'''
+# Channels
+ASGI_APPLICATION = 'mysite.routing.application'
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

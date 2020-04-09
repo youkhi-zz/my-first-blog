@@ -9,7 +9,9 @@ from django.http import Http404
 from django.urls import reverse
 from django.views import generic
 from .sampletranslator import sampletranslator
+from django.utils.safestring import mark_safe
 import json
+
 
 
 #from langdetect import detect_langs
@@ -34,6 +36,9 @@ def post_main(request): #guestbook
     context = {'form':form, "posts":posts}
     return render(request, 'myblog/post_main.html', context)
 
+def echochatroom(request):
+    return render(request, 'myblog/echochatroom.html')
+
 # POST method needs to be used
 # text to variable, variable to API, json to dynamic contents -> javascript
 def translator(request):
@@ -45,7 +50,7 @@ def translator(request):
             textvar=textvar['input'] # request.POST에서 사용자가 입력한 text만 가져오는 부분
             output_json=sampletranslator(textvar) # 사용자가 입력한 text를 api호출해서 결과값 받아옴
             output_list=json.loads(output_json)
-            # print(output_list) # {'detectedLanguage': {'language': 'ko', 'score': 1.0}, 'translations': [{'text': 'Translate me', 'to': 'en'}]}
+            # print(output_list) # [{'detectedLanguage': {'language': 'ko', 'score': 1.0}, 'translations': [{'text': 'Translate me', 'to': 'en'}]}]
             output_text=output_list[0]['translations'][0]['text']
             print(output_text)
             # return redirect('translator')
