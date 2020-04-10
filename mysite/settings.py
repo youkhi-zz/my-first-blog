@@ -30,15 +30,15 @@ ALLOWED_HOSTS = ['*']
 
 # Application definition
 
-INSTALLED_APPS = [
-    #'channels',
+INSTALLED_APPS = [    
+    'channels',
     'myblog.apps.MyblogConfig',    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.staticfiles',    
 ]
 '''
 CHANNEL_LAYERS = {
