@@ -78,9 +78,17 @@
                                 <input id="chat-message-submit" type="button" value="Send"/>
                                 
                                 </div>
-                                <script>                                        
+                                <script>
+                                    var ws_scheme = window.location.protocol == "https:" ? "wss://" : "ws://";                                        
                                     var chatSocket = new WebSocket(
-                                        'ws://' + window.location.host + '/ws/myblog/');
+                                        ws_scheme + window.location.host + '/ws/myblog/');
+                                        
+                                    //var chatSocket = new WebSocket(
+                                        //'ws://' + window.location.host + '/ws/myblog/');
+
+                                    //var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
+                                        //var ws_path = ws_scheme + '://' + window.location.host + "/chat/stream/";
+                                        //var socket = new ReconnectingWebSocket(ws_path);
 
                                     chatSocket.onmessage = function(e) {
                                         var data = JSON.parse(e.data);
