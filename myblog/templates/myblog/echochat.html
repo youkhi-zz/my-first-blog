@@ -73,7 +73,7 @@
 	    				<div class="row pt-md-4">
                             <div class="content container">
                                 <div class="post-form">
-                                <textarea id="chat-log" cols="70" rows="10"></textarea><br/>
+                                <textarea readonly id="chat-log" cols="70" rows="10"></textarea><br/>
                                 <input id="chat-message-input" type="text" size="70"/><br/>
                                 <input id="chat-message-submit" type="button" value="Send"/>
                                 
@@ -83,13 +83,6 @@
                                     var chatSocket = new WebSocket(
                                         ws_scheme + window.location.host + '/ws/myblog/');
                                         
-                                    //var chatSocket = new WebSocket(
-                                        //'ws://' + window.location.host + '/ws/myblog/');
-
-                                    //var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
-                                        //var ws_path = ws_scheme + '://' + window.location.host + "/chat/stream/";
-                                        //var socket = new ReconnectingWebSocket(ws_path);
-
                                     chatSocket.onmessage = function(e) {
                                         var data = JSON.parse(e.data);
                                         var message = data['message'];

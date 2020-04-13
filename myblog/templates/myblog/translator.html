@@ -71,10 +71,38 @@
 	    				<div class="row pt-md-4">
                             <div class="content container">
                                 <form method="POST" class="post-form">                             
-                                    {% csrf_token %}
-                                    <button type="submit" class="save btn btn-default">Translate</button>
-                                    {{ form.as_table }}                                    
+                                    {% csrf_token %}                                    
+                                    <input type="text" id="text" placeholder="Type text here" size="40">
+                                    <button type="submit" class="save btn btn-default" id="translate">Translate</button>
+                                    {{ form.as_table }} 
+                                    <script>
+                                    <!-- code from Azure docs -->
+
+                                    //Initiate jQuery on load.
+                                    $(function() {
+                                    //Translate text with flask route
+                                    $("#translate").on("click", function(e) {
+                                        e.preventDefault();
+                                        
+                                        $.ajax({
+                                            
+                                            success: function(data) {
+                                            
+                                                document.getElementById("translate").textContent = data[i].translations[0].text;                                                
+                                            
+                                            }
+                                        });
+                                        
+                                    });
+                                    })
+
+                                    </script>
+                                    
+                                                
                                 </form>
+                                <!-- js needs to know click event has been occurred -->
+                                <!-- already got the result from views.py -->
+                                <!-- the result needs to be tossed to js -->
                                 <br><br>
                             </div>
 			    		</div><!-- END-->

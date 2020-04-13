@@ -50,7 +50,7 @@ def translator(request):
             textvar=textvar['input'] # request.POST에서 사용자가 입력한 text만 가져오는 부분
             output_json=sampletranslator(textvar) # 사용자가 입력한 text를 api호출해서 결과값 받아옴
             output_list=json.loads(output_json)
-            # print(output_list) # [{'detectedLanguage': {'language': 'ko', 'score': 1.0}, 'translations': [{'text': 'Translate me', 'to': 'en'}]}]
+            # [{'detectedLanguage': {'language': 'ko', 'score': 1.0}, 'translations': [{'text': 'Translate me', 'to': 'en'}]}]
             output_text=output_list[0]['translations'][0]['text']
             print(output_text)
             # return redirect('translator')
