@@ -40,18 +40,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',    
 ]
-'''
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'asgiref.inmemory.ChannelLayer',
-        'ROUTING': 'myblog.routing.channel_routing', #'ROUTING': 'myblog.routing.channel_routing',
-    },
-}
-'''
+
 # Channels
 ASGI_APPLICATION = 'mysite.routing.application'
 
-
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer'
+    },
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
