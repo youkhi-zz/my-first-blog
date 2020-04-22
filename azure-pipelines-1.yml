@@ -78,6 +78,13 @@ stages:
             inputs:
               versionSpec: '$(pythonVersion)'
             displayName: 'Use Python version'
+          
+          - task: CopyFiles@2
+            displayName: 'Copy Files to: \\mypath\storage\$(Build.BuildNumber)'
+            inputs:
+              SourceFolder: '$(Build.SourcesDirectory)'
+              Contents: '_buildOutput/**'
+              TargetFolder: '\\mypath\storage\$(Build.BuildNumber)'
 
           - task: AzureWebApp@1
             displayName: 'Deploy Azure Web App : yorha'

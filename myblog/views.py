@@ -36,8 +36,11 @@ def post_main(request): #guestbook
     context = {'form':form, "posts":posts}
     return render(request, 'myblog/post_main.html', context)
 
-def echochat(request):
-    return render(request, 'myblog/echochat.html')
+def nickname_chat(request):
+    return render(request, 'myblog/chat_nickname.html')
+
+def chat(request):
+    return render(request, 'myblog/chat.html')
 
 # POST method needs to be used
 # text to variable, variable to API, json to dynamic contents -> javascript

@@ -39,8 +39,8 @@
 				<ul>
 					<li><a href="{% url 'travel' %}">Home</a></li>
 					<li><a href="{% url 'post_main' %}">Guest Book</a></li>
-                    <li class="colorlib-active"><a href="">Translator</a></li>
-                    <li><a href="{% url 'nickname_chat' %}">Chat</a></li>
+                    <li><a href="{% url 'translator' %}">Translator</a></li>
+                    <li class="colorlib-active"><a href="">Chat</a></li>
 					<li><a href="{% url 'about' %}">About</a></li>
 				</ul>
 			</nav>
@@ -66,43 +66,28 @@
 			<section class="ftco-section ftco-no-pt ftco-no-pb">            
 	    	<div class="container">            
 	    		<div class="row d-flex">                
-	    			<div class="col-xl-8 py-5 px-md-5">
-                        <h4 class="mb-4">This translator is powered by Microsoft Azure</h4>
+	    			<div class="col-xl-8 py-5 px-md-5">                        
 	    				<div class="row pt-md-4">
                             <div class="content container">
-                                <form method="POST" class="post-form">                             
-                                    {% csrf_token %}                                    
-                                    <input type="text" id="text" placeholder="Type text here" size="40">
-                                    <button type="submit" class="save btn btn-default" id="translate">Translate</button>
-                                    {{ form.as_table }} 
-                                    <script>
-                                    <!-- code from Azure docs -->
+                                <div class="post-form">
+                                    Tell us your nickname!<br><br>
+                                    <input id="nickname-input" type="text" size="100"><br>
+                                    <input id="nickname-submit" type="button" value="Enter">                                
+                                </div>
+                                <script>
+                                    document.querySelector('#nickname-input').focus();
+                                    document.querySelector('#nickname-input').onkeyup = function(e) {
+                                        if (e.keyCode === 13) {  // enter, return
+                                            document.querySelector('#nickname-submit').click();
+                                        }
+                                    };
 
-                                    //Initiate jQuery on load.
-                                    $(function() {
-                                    //Translate text with flask route
-                                    $("#translate").on("click", function(e) {
-                                        e.preventDefault();
-                                        
-                                        $.ajax({
-                                            
-                                            success: function(data) {
-                                            
-                                                document.getElementById("translate").textContent = data[i].translations[0].text;                                                
-                                            
-                                            }
-                                        });
-                                        
-                                    });
-                                    })
-
-                                    </script>
-                                    
-                                                
-                                </form>
-                                <!-- js needs to know click event has been occurred -->
-                                <!-- already got the result from views.py -->
-                                <!-- the result needs to be tossed to js -->
+                                    document.querySelector('#nickname-submit').onclick = function(e) {
+                                        var nickname = document.querySelector('#nickname-input').value;
+                                        //window.location.pathname = '/chat/' + roomName + '/';
+                                        window.location.pathname = '/chat/';
+                                    };
+                                </script>
                                 <br><br>
                             </div>
 			    		</div><!-- END-->

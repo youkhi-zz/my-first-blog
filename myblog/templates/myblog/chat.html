@@ -40,7 +40,7 @@
 					<li><a href="{% url 'travel' %}">Home</a></li>
 					<li><a href="{% url 'post_main' %}">Guest Book</a></li>
                     <li><a href="{% url 'translator' %}">Translator</a></li>
-                    <li class="colorlib-active"><a href="">Echo Chat</a></li>
+                    <li class="colorlib-active"><a href="{% url 'nickname_chat' %}">Chat</a></li>
 					<li><a href="{% url 'about' %}">About</a></li>
 				</ul>
 			</nav>
@@ -66,19 +66,21 @@
 			<section class="ftco-section ftco-no-pt ftco-no-pb">            
 	    	<div class="container">            
 	    		<div class="row d-flex">                
-	    			<div class="col-xl-8 py-5 px-md-5">
-                        
-                        <h4 class="mb-4">This chatbot is powered by Microsoft Azure</h4>
-                        
+	    			<div class="col-xl-8 py-5 px-md-5">                        
 	    				<div class="row pt-md-4">
                             <div class="content container">
                                 <div class="post-form">
+                                Powered by Microsoft<br><br>
+
                                 <textarea readonly id="chat-log" cols="70" rows="10"></textarea><br/>
                                 <input id="chat-message-input" type="text" size="70"/><br/>
                                 <input id="chat-message-submit" type="button" value="Send"/>
-                                
+                                <!--{{ room_name|json_script:"room-name" }}-->
+                                {{ nickname|json_script:"nickname" }}
                                 </div>
                                 <script>
+                                    const nickname = JSON.parse(document.getElementById('nickname').textContent);
+
                                     var ws_scheme = window.location.protocol == "https:" ? "wss://" : "ws://";                                        
                                     var chatSocket = new WebSocket(
                                         ws_scheme + window.location.host + '/ws/myblog/');
@@ -86,7 +88,7 @@
                                     chatSocket.onmessage = function(e) {
                                         var data = JSON.parse(e.data);
                                         var message = data['message'];
-                                        document.querySelector('#chat-log').value += (message + '\n');
+                                        document.querySelector('#chat-log').value += (nickname + message + '\n');
                                     };
 
                                     chatSocket.onclose = function(e) {
